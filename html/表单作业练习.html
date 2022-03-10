@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单作业练习</title>
+    <style>
+        .td4label {
+            width: 20%;
+        }
+
+        .td4content {
+            width: 80%;
+        }
+
+    </style>
+</head>
+<body>
+
+<form action="#" method="post">
+    <table style="border-collapse: collapse;width: 380px;text-align: center" border="1">
+        <tr>
+            <td class="td4label">
+                <label>用户名:</label>
+            </td>
+            <td class="td4content">
+                <input type="text" name="username">
+            </td>
+        </tr>
+        <tr>
+            <td class="td4label">
+                <label>密码:</label>
+            </td>
+            <td class="td4content">
+                <input type="password" name="password">
+            </td>
+        </tr>
+        <tr>
+            <td class="td4label">
+                <label>性别:</label>
+            </td>
+            <td class="td4content">
+                <input type="radio" name="gender" value="1" id="male"><label for="male">男</label>
+                <input type="radio" name="gender" value="1" id="female"><label for="female">女</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="td4label">
+                <label>爱好:</label>
+            </td>
+            <td class="td4content">
+                <input type="checkbox" name="hobbies" value="1" id="cy"><label for="cy">抽烟</label>
+                <input type="checkbox" name="hobbies" value="2" id="hj"><label for="hj">喝酒</label>
+                <input type="checkbox" name="hobbies" value="3" id="tt"><label for="tt">烫头</label>
+            </td>
+        </tr>
+        <tr>
+            <td class="td4label">
+                <label for="avatar">头像:</label>
+            </td>
+            <td class="td4content">
+                <input id="avatar" type="file" name="avatar">
+            </td>
+        </tr>
+        <tr>
+            <td class="td4label">
+                <label>家乡:</label>
+            </td>
+            <td class="td4content">
+                <select id="province" name="province">
+                    <option>---请选择---</option>
+                </select>
+                <select id="city" name="city">
+                    <option>---请选择---</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="td4label">
+                <label for="desc">自我介绍:</label>
+            </td>
+            <td class="td4content">
+                <textarea id="desc" name="desc" cols="40" rows="5"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="点我提交">
+            </td>
+        </tr>
+
+    </table>
+
+</form>
+<script src="data.js"></script>
+<script>
+    for (let i = 0; i < area.length; i++) {
+        let province = area[i];
+        let option = "<option value='" + province.code + "'>" + province.name + "</option>";
+
+        document.querySelector("#province").innerHTML += option;
+    }
+
+    document.querySelector("#province").onchange = function () {
+
+        document.querySelector("#city").innerHTML = "<option>---请选择---</option>";
+        let code = this.value;
+        for (let i = 0; i < area.length; i++) {
+            if (area[i].code == code) {
+                let cities = area[i].children;
+
+                for (let i = 0; i < cities.length; i++) {
+                    let city = cities[i];
+                    let option = "<option value='" + city.code + "'>" + city.name + "</option>";
+
+                    document.querySelector("#city").innerHTML += option;
+                }
+                break;
+            }
+        }
+    }
+</script>
+</body>
+</html>
